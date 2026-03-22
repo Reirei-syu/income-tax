@@ -1,0 +1,5 @@
+{
+  "name": "讲课费个税计算器",
+  "description": "支持输入价税合计金额计算税后，或输入税后金额反算个税和税前金额的劳务报酬计算工具。",
+  "requestFramePermissions": []
+}
