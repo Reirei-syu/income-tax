@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Calculator, Info, Receipt, Wallet } from 'lucide-react';
+import { Calculator, Info, Receipt, Wallet, Percent, MinusCircle } from 'lucide-react';
 
 type CalcMode = 'forward' | 'reverse';
 
@@ -16,6 +16,8 @@ export default function App() {
     preTax: number;
     tax: number;
     postTax: number;
+    taxRate: number;
+    quickDeduction: number;
   } | null>(null);
 
   useEffect(() => {
@@ -28,43 +30,63 @@ export default function App() {
     if (mode === 'forward') {
       let tax = 0;
       let preTax = val;
+      let taxRate = 0;
+      let quickDeduction = 0;
       if (preTax <= 800) {
         tax = 0;
       } else if (preTax <= 4000) {
         tax = (preTax - 800) * 0.2;
+        taxRate = 0.2;
       } else {
         const taxableIncome = preTax * 0.8;
         if (taxableIncome <= 20000) {
           tax = taxableIncome * 0.2;
+          taxRate = 0.2;
         } else if (taxableIncome <= 50000) {
           tax = taxableIncome * 0.3 - 2000;
+          taxRate = 0.3;
+          quickDeduction = 2000;
         } else {
           tax = taxableIncome * 0.4 - 7000;
+          taxRate = 0.4;
+          quickDeduction = 7000;
         }
       }
       setResult({
         preTax,
         tax,
-        postTax: preTax - tax
+        postTax: preTax - tax,
+        taxRate,
+        quickDeduction
       });
     } else {
       let postTax = val;
       let preTax = 0;
+      let taxRate = 0;
+      let quickDeduction = 0;
       if (postTax <= 800) {
         preTax = postTax;
       } else if (postTax <= 3360) {
         preTax = (postTax - 160) / 0.8;
+        taxRate = 0.2;
       } else if (postTax <= 21000) {
         preTax = postTax / 0.84;
+        taxRate = 0.2;
       } else if (postTax <= 49500) {
         preTax = (postTax - 2000) / 0.76;
+        taxRate = 0.3;
+        quickDeduction = 2000;
       } else {
         preTax = (postTax - 7000) / 0.68;
+        taxRate = 0.4;
+        quickDeduction = 7000;
       }
       setResult({
         preTax,
         tax: preTax - postTax,
-        postTax
+        postTax,
+        taxRate,
+        quickDeduction
       });
     }
   }, [inputValue, mode]);
@@ -137,6 +159,29 @@ export default function App() {
                 </span>
               </div>
               
+              {result.taxRate > 0 && (
+                <div className="space-y-3 py-3 border-y border-slate-100/60">
+                  <div className="flex justify-between items-center text-slate-500">
+                    <span className="flex items-center gap-2 text-sm">
+                      <Percent className="w-3.5 h-3.5" />
+                      预扣税率
+                    </span>
+                    <span className="text-sm font-medium">
+                      {(result.taxRate * 100).toFixed(0)}%
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center text-slate-500">
+                    <span className="flex items-center gap-2 text-sm">
+                      <MinusCircle className="w-3.5 h-3.5" />
+                      速算扣除数
+                    </span>
+                    <span className="text-sm font-medium">
+                      ¥ {result.quickDeduction.toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              )}
+
               <div className="flex justify-between items-center text-rose-600">
                 <span className="flex items-center gap-2 text-sm font-medium">
                   <Calculator className="w-4 h-4" />
