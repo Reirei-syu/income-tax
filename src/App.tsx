@@ -99,7 +99,7 @@ export default function App() {
         <div className="calculator-header px-6 py-8 text-center">
           <Calculator className="header-icon w-12 h-12 mx-auto mb-4" />
           <h1 className="text-2xl font-bold tracking-tight">劳务报酬个税计算器</h1>
-          <p className="mt-2 text-slate-500 text-sm">支持正算与反算 (劳务报酬所得)</p>
+          <p className="mt-2 text-slate-500 text-sm">支持价税合计数算税和到手价算税</p>
         </div>
         
         {/* Content */}
