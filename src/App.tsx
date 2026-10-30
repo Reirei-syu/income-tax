@@ -154,7 +154,7 @@ export default function App() {
               <div className="flex justify-between items-center">
                 <span className="text-slate-500 flex items-center gap-2 text-sm font-medium">
                   <Receipt className="w-4 h-4" />
-                  价税合计 (税前)
+                  价税合计数
                 </span>
                 <span className="font-semibold text-slate-900">
                   ¥ {result.preTax.toFixed(2)}
@@ -197,7 +197,7 @@ export default function App() {
               <div className="pt-4 border-t border-slate-200 flex justify-between items-center">
                 <span className="text-slate-700 font-medium flex items-center gap-2">
                   <Wallet className="w-5 h-5 text-emerald-500" />
-                  税后金额 (到手)
+                  到手价
                 </span>
                 <span className="text-2xl font-bold text-emerald-600">
                   ¥ {result.postTax.toFixed(2)}
