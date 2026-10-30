@@ -4,7 +4,7 @@
 
 # income-tax
 
-讲课费个税计算器，基于 Vite + React 构建，可直接部署到 GitHub Pages。
+劳务报酬个税计算器，基于 Vite + React 构建，可直接部署到 GitHub Pages。
 
 ## 本地运行
 
