@@ -9,7 +9,7 @@ import { Calculator, Info, Receipt, Wallet, Percent, MinusCircle } from 'lucide-
 type CalcMode = 'forward' | 'reverse';
 
 export default function App() {
-  const [mode, setMode] = useState<CalcMode>('forward');
+  const [mode, setMode] = useState<CalcMode>('reverse');
   const [inputValue, setInputValue] = useState<string>('');
   
   const [result, setResult] = useState<{
@@ -114,7 +114,7 @@ export default function App() {
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              已知价税合计 (正算)
+              价税合计数算税
             </button>
             <button
               onClick={() => { setMode('reverse'); setInputValue(''); }}
@@ -124,7 +124,7 @@ export default function App() {
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              已知税后金额 (反算)
+              到手价算税
             </button>
           </div>
 
