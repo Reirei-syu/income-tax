@@ -131,7 +131,7 @@ export default function App() {
           {/* Input */}
           <div className="mb-8">
             <label htmlFor="amount" className="block text-sm font-medium text-slate-700 mb-2">
-              {mode === 'forward' ? '价税合计金额 (元)' : '税后金额 (元)'}
+              {mode === 'forward' ? '价税合计数（元）' : '到手价（元）'}
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
